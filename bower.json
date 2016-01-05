@@ -1,0 +1,29 @@
+{
+  "name": "fork-me",
+  "version": "0.1.0",
+  "authors": [
+    "Saeid Zebardast <saeid.zebardast@gmail.com>"
+  ],
+  "description": "Simple Polymer element to add a GitHub fork me ribbon",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "github"
+  ],
+  "main": "fork-me.html",
+  "license": "MIT",
+  "homepage": "https://github.com/saeidzebardast/fork-me/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0",
+    "github-fork-ribbon-css": "~0.1.1"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^3.4.0"
+  }
+}
