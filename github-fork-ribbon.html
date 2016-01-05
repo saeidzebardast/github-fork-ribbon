@@ -11,16 +11,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../polymer/polymer.html">
 
 <!--
-An element providing a solution to no problem in particular.
+Simple Polymer element to add a GitHub fork me ribbon.
+
+Usage:
+
+    <github-fork-ribbon
+      username="GitHub username"
+      repository="GitHub repository name"
+      position="right|right-bottom|left-bottom|left"
+      label="Fork me">
+    </github-fork-ribbon>
 
 Example:
 
-    <github-fork-ribbon></github-fork-ribbon>
-
-Example:
-
-    <github-fork-ribbon>
-      <h2>Hello github-fork-ribbon</h2>
+    <github-fork-ribbon
+      username="saeidzebardast"
+      repository="nvd3-elements"
+      position="right"
+      label="Fork me">
     </github-fork-ribbon>
 
 @demo demo/index.html
@@ -30,27 +38,141 @@ Example:
 <dom-module id="github-fork-ribbon">
   <template>
     <style>
-      :host {
-        display: block;
-        box-sizing: border-box;
+      /*!
+       * "Fork me on GitHub" CSS ribbon v0.1.1 | MIT License
+       * https://github.com/simonwhitaker/github-fork-ribbon-css.
+       * I just rename classes.
+      */
+
+      /* Left will inherit from right (so we don't need to duplicate code) */
+
+      .ribbon {
+        /* The right and left classes determine the side we attach our banner to */
+        position: absolute;
+        /* Add a bit of padding to give some substance outside the "stitching" */
+        padding: 2px 0;
+        /* Set the base colour */
+        background-color: #a00;
+        /* Set a gradient: transparent black at the top to almost-transparent black at the bottom */
+        background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.15)));
+        background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+        background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+        background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+        background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+        /* Add a drop shadow */
+        -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+        box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+        /* Set the font */
+        font: 700 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
+        z-index: 9999;
+        pointer-events: auto;
       }
 
-      .author img {
-        display: block;
-        float: left;
-        margin-right: 5px;
-        max-height: 100px;
-        max-width: 100px;
+      .ribbon a,
+      .ribbon a:hover {
+        /* Set the text properties */
+        color: #fff;
+        text-decoration: none;
+        text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        /* Set the geometry. If you fiddle with these you'll also need
+     to tweak the top and right values in .ribbon. */
+        width: 200px;
+        line-height: 20px;
+        /* Set the layout properties */
+        display: inline-block;
+        padding: 2px 0;
+        /* Add "stitching" effect */
+        border-width: 1px 0;
+        border-style: dotted;
+        border-color: #fff;
+        border-color: rgba(255, 255, 255, 0.7);
+      }
+
+      .wrapper {
+        width: 150px;
+        height: 150px;
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        z-index: 9999;
+        pointer-events: none;
+      }
+
+      .wrapper.fixed {
+        position: fixed;
+      }
+
+      .wrapper.left {
+        left: 0;
+      }
+
+      .wrapper.right {
+        right: 0;
+      }
+
+      .wrapper.left-bottom {
+        position: fixed;
+        top: inherit;
+        bottom: 0;
+        left: 0;
+      }
+
+      .wrapper.right-bottom {
+        position: fixed;
+        top: inherit;
+        bottom: 0;
+        right: 0;
+      }
+
+      .wrapper.right .ribbon {
+        top: 42px;
+        right: -43px;
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+
+      .wrapper.left .ribbon {
+        top: 42px;
+        left: -43px;
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+
+      .wrapper.left-bottom .ribbon {
+        top: 80px;
+        left: -43px;
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+
+      .wrapper.right-bottom .ribbon {
+        top: 80px;
+        right: -43px;
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg);
       }
     </style>
 
-    <h1>&lt;github-fork-ribbon&gt;</h1>
-    <content></content>
-    <p class="author">
-      <img src$="{{author.image}}">
-      Cheers,<br/>
-      <span class="name">{{author.name}}</span>
-    </p>
+    <div class$="wrapper [[position]]">
+      <div class="ribbon">
+        <a href$="[[repositoryURL]]">[[label]]</a>
+      </div>
+    </div>
   </template>
 
   <script>
@@ -59,92 +181,43 @@ Example:
 
       properties: {
         /**
-         * `fancy` indicates that the element should don a monocle and tophat,
-         * while checking its pocket watch.
+         *GitHub username
          */
-        fancy: Boolean,
+        username: String,
 
         /**
-         * Describes the author of the element, but is really just an excuse to
-         * show off JSDoc annotations.
-         *
-         * @type {{name: string, image: string}}
+         *GitHub repository name
          */
-        author: {
-          type: Object,
-          // Use `value` to provide a default value for a property, by setting it
-          // on your element's prototype.
-          //
-          // If you provide a function, as we do here, Polymer will call that
-          // _per element instance_.
-          //
-          // We do that to ensure that each element gets its own copy of the
-          // value, rather than having it shared across all instances (via the
-          // prototype).
-          value: function() {
-            return {
-              name:  'Dimitri Glazkov',
-              image: 'http://addyosmani.com/blog/wp-content/uploads/2013/04/unicorn.jpg',
-            };
-          }
+        repository: String,
+
+        /**
+         * GitHub repository url. It is computed property.
+         */
+        repositoryURL: {
+          type: String,
+          computed: '_computeRepositoryURL(username, repository)'
         },
+
+        /**
+         * Position of ribbon.
+         * Accept: right, right-bottom, left-bottom, left.
+         */
+        position: {
+          type: String,
+          value: 'right'
+        },
+
+        /**
+         * Label of ribbon.
+         */
+        label: {
+          type: String,
+          value: 'Fork me on GitHub'
+        }
       },
 
-      // Element Lifecycle
-
-      ready: function() {
-        // `ready` is called after all elements have been configured, but
-        // propagates bottom-up. This element's children are ready, but parents
-        // are not.
-        //
-        // This is the point where you should make modifications to the DOM (when
-        // necessary), or kick off any processes the element wants to perform.
-      },
-
-      attached: function() {
-        // `attached` fires once the element and its parents have been inserted
-        // into a document.
-        //
-        // This is a good place to perform any work related to your element's
-        // visual state or active behavior (measuring sizes, beginning animations,
-        // loading resources, etc).
-      },
-
-      detached: function() {
-        // The analog to `attached`, `detached` fires when the element has been
-        // removed from a document.
-        //
-        // Use this to clean up anything you did in `attached`.
-      },
-
-      // Element Behavior
-
-      /**
-       * Sometimes it's just nice to say hi.
-       *
-       * @param {string} greeting A positive greeting.
-       * @return {string} The full greeting.
-       */
-      sayHello: function(greeting) {
-        var response = greeting || 'Hello World!';
-        return 'github-fork-ribbon says, ' + response;
-      },
-
-      /**
-       * The `github-fork-ribbon-lasers` event is fired whenever `fireLasers` is called.
-       *
-       * @event github-fork-ribbon-lasers
-       * @detail {{sound: String}}
-       */
-
-      /**
-       * Attempt to destroy this element's enemies with a beam of light!
-       *
-       * Or, at least, dispatch an event in the vain hope that someone else will
-       * do the zapping.
-       */
-      fireLasers: function() {
-        this.fire('github-fork-ribbon-lasers', {sound: 'Pew pew!'});
+      _computeRepositoryURL: function(username, repository) {
+        return "https://github.com/" + username + "/" + repository;
       }
     });
   </script>
