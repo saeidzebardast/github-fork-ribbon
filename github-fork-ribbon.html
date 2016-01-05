@@ -15,19 +15,19 @@ An element providing a solution to no problem in particular.
 
 Example:
 
-    <fork-me></fork-me>
+    <github-fork-ribbon></github-fork-ribbon>
 
 Example:
 
-    <fork-me>
-      <h2>Hello fork-me</h2>
-    </fork-me>
+    <github-fork-ribbon>
+      <h2>Hello github-fork-ribbon</h2>
+    </github-fork-ribbon>
 
 @demo demo/index.html
 @hero hero.svg
 -->
 
-<dom-module id="fork-me">
+<dom-module id="github-fork-ribbon">
   <template>
     <style>
       :host {
@@ -44,7 +44,7 @@ Example:
       }
     </style>
 
-    <h1>&lt;fork-me&gt;</h1>
+    <h1>&lt;github-fork-ribbon&gt;</h1>
     <content></content>
     <p class="author">
       <img src$="{{author.image}}">
@@ -55,7 +55,7 @@ Example:
 
   <script>
     Polymer({
-      is: 'fork-me',
+      is: 'github-fork-ribbon',
 
       properties: {
         /**
@@ -127,13 +127,13 @@ Example:
        */
       sayHello: function(greeting) {
         var response = greeting || 'Hello World!';
-        return 'fork-me says, ' + response;
+        return 'github-fork-ribbon says, ' + response;
       },
 
       /**
-       * The `fork-me-lasers` event is fired whenever `fireLasers` is called.
+       * The `github-fork-ribbon-lasers` event is fired whenever `fireLasers` is called.
        *
-       * @event fork-me-lasers
+       * @event github-fork-ribbon-lasers
        * @detail {{sound: String}}
        */
 
@@ -144,7 +144,7 @@ Example:
        * do the zapping.
        */
       fireLasers: function() {
-        this.fire('fork-me-lasers', {sound: 'Pew pew!'});
+        this.fire('github-fork-ribbon-lasers', {sound: 'Pew pew!'});
       }
     });
   </script>

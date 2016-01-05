@@ -1,5 +1,5 @@
 {
-  "name": "fork-me",
+  "name": "github-fork-ribbon",
   "version": "0.1.0",
   "authors": [
     "Saeid Zebardast <saeid.zebardast@gmail.com>"
@@ -11,9 +11,9 @@
     "polymer",
     "github"
   ],
-  "main": "fork-me.html",
+  "main": "github-fork-ribbon.html",
   "license": "MIT",
-  "homepage": "https://github.com/saeidzebardast/fork-me/",
+  "homepage": "https://github.com/saeidzebardast/github-fork-ribbon/",
   "ignore": [
     "/.*",
     "/test/"

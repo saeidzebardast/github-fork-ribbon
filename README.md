@@ -1,17 +1,17 @@
-# &lt;fork-me&gt; [![Build Status](https://travis-ci.org/saeidzebardast/fork-me.svg?branch=master)](https://travis-ci.org/saeidzebardast/fork-me)
+# &lt;github-fork-ribbon&gt; [![Build Status](https://travis-ci.org/saeidzebardast/github-fork-ribbon.svg?branch=master)](https://travis-ci.org/saeidzebardast/github-fork-ribbon)
 
 Simple Polymer element to add a GitHub fork me ribbon.
 
 
 ## Install
 ```
-$ bower install fork-me
+$ bower install github-fork-ribbon
 ```
 
 ## Usage
 
 ```
-<fork-me username="[[githubUsername]]" repository="[[githubRepository]]" right></fork-me>
+<github-fork-ribbon username="[[githubUsername]]" repository="[[githubRepository]]" right></github-fork-ribbon>
 ```
 
 ## License
