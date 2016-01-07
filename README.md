@@ -22,6 +22,9 @@ $ bower install github-fork-ribbon
 </github-fork-ribbon>
 ```
 
+## Demo and Options
+See the [component page](http://saeidzebardast.github.io/github-fork-ribbon/components/github-fork-ribbon/) for demo and options.
+
 ## License
 
 MIT © [Saeid Zebardast](http://zebardast.com)
