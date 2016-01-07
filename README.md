@@ -2,6 +2,8 @@
 
 Simple Polymer element to add a GitHub fork me ribbon.
 
+![github-fork-ribbon demo](/demo/demo.png?raw=true "github-fork-ribbon")
+
 
 ## Install
 ```
