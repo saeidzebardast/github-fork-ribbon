@@ -46,6 +46,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           assert.equal(myEl.label, 'Fork me on GitHub');
         });
 
+        test('default background color is set', function() {
+          assert.equal(myEl.backgroundColor, '#a00');
+        });
+
         test('compute repository url', function() {
           myEl.set('username', 'saeidzebardast')
           myEl.set('repository', 'github-fork-ribbon')

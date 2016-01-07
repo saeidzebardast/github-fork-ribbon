@@ -11,7 +11,13 @@ $ bower install github-fork-ribbon
 ## Usage
 
 ```
-<github-fork-ribbon username="[[githubUsername]]" repository="[[githubRepository]]" right></github-fork-ribbon>
+<github-fork-ribbon
+  username="GitHub username"
+  repository="GitHub repository name"
+  position="right|right-bottom|left-bottom|left"
+  label="Fork me"
+  background-color="Background color of ribbon">
+</github-fork-ribbon>
 ```
 
 ## License
